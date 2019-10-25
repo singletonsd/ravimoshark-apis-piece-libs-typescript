@@ -15,7 +15,8 @@
  */
 export interface PieceCategories { 
     name?: string;
-    imagePath?: string;
+    imageName?: string;
+    imageExtension?: string;
     createdAt?: string;
     updatedAt?: string;
     deleted?: boolean;
