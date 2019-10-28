@@ -67,10 +67,10 @@ export class PiecesService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getPieceById(refArticle: number, deleted?: Deleted, observe?: 'body', reportProgress?: boolean): Observable<Pieces>;
-    public getPieceById(refArticle: number, deleted?: Deleted, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Pieces>>;
-    public getPieceById(refArticle: number, deleted?: Deleted, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Pieces>>;
-    public getPieceById(refArticle: number, deleted?: Deleted, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public getPieceById(refArticle: string, deleted?: Deleted, observe?: 'body', reportProgress?: boolean): Observable<Pieces>;
+    public getPieceById(refArticle: string, deleted?: Deleted, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Pieces>>;
+    public getPieceById(refArticle: string, deleted?: Deleted, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Pieces>>;
+    public getPieceById(refArticle: string, deleted?: Deleted, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (refArticle === null || refArticle === undefined) {
             throw new Error('Required parameter refArticle was null or undefined when calling getPieceById.');
