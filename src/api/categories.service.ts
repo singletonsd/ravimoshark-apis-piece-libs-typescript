@@ -29,7 +29,7 @@ import { Configuration }                                     from '../configurat
 @Injectable()
 export class CategoriesService {
 
-    protected basePath = 'http://localhost:8003';
+    protected basePath = 'http://localhost:8000';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
@@ -107,6 +107,20 @@ export class CategoriesService {
         }
 
         let headers = this.defaultHeaders;
+
+        // authentication (api_key) required
+        if (this.configuration.apiKeys["api_key"]) {
+            headers = headers.set('api_key', this.configuration.apiKeys["api_key"]);
+        }
+
+        // authentication (bearer_auth) required
+        // authentication (main_auth) required
+        if (this.configuration.accessToken) {
+            const accessToken = typeof this.configuration.accessToken === 'function'
+                ? this.configuration.accessToken()
+                : this.configuration.accessToken;
+            headers = headers.set('Authorization', 'Bearer ' + accessToken);
+        }
 
         // to determine the Accept header
         let httpHeaderAccepts: string[] = [
